@@ -1,29 +1,52 @@
 //
 // Wells
 // --------------------------------------------------
+@mixin well(){
+	min-height: 20px;
+	padding: 19px;
+	margin-bottom: 20px;
+	background-color: $wellBackground;
+	border: 1px solid darken($wellBackground, 7%);
+	@include border-radius($baseBorderRadius);
+	@include box-shadow(inset 0 1px 1px rgba(0,0,0,.05));
+	blockquote {
+	  border-color: #ddd;
+	  border-color: rgba(0,0,0,.15);
+	}
+}
 
+@mixin well-large {
+	padding: 24px;
+  	@include border-radius($borderRadiusLarge);
+}
 
 // Base class
 .well {
-  min-height: 20px;
-  padding: 19px;
-  margin-bottom: 20px;
-  background-color: $wellBackground;
-  border: 1px solid darken($wellBackground, 7%);
-  @include border-radius($baseBorderRadius);
-  @include box-shadow(inset 0 1px 1px rgba(0,0,0,.05));
-  blockquote {
-    border-color: #ddd;
-    border-color: rgba(0,0,0,.15);
-  }
+  @include well;
 }
 
 // Sizes
 .well-large {
-  padding: 24px;
-  @include border-radius($borderRadiusLarge);
+	@include well-large;
 }
-.well-small {
+@mixin well-small {
   padding: 9px;
   @include border-radius($borderRadiusSmall);
+}
+
+.well-small {
+	@include well-small;
+}
+
+// For semantic use
+%well {
+	@include well;
+}
+%well-large {
+	@include well;
+	@include well-large;
+}
+%well-small {
+	@include well;
+	@include well-small;
 }
